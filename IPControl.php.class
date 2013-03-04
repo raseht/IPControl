@@ -1,0 +1,58 @@
+<?php
+namespace DiamondIP;
+
+class IPControl {
+    private static $DELETES_URL = "/inc-ws/services/Deletes?wsdl";
+    private static $EXPORTS_URL = "/inc-ws/services/Exports?wsdl";
+    private static $GETS_URL = "/inc-ws/services/Gets?wsdl";
+    private static $IMPORTS_URL = "/inc-ws/services/Imports?wsdl";
+    private static $TASKS_URL = "/inc-ws/services/TaskInvocation?wsdl";
+    private static $UPDATES_URL = "/inc-ws/services/Updates?wsdl";
+    
+    private $ipAddr;
+    private $port;
+    private $soapClient;
+    
+    public function getDeviceByIPAddr($ipAddr) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getDeviceByIPAddr($ipAddr);
+        return WSDevice::cast($result);
+    }
+    
+    public function getDeviceByMACAddr($macAddr) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getDeviceByMACAddr($macAddr);
+        return WSDevice::cast($result);
+    }
+    
+    public function getDeviceByHostname($hostname) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getDeviceByHostname($hostname);
+        return WSDevice::cast($result);
+    }
+    
+    public function getContainerByName($name) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getContainerByName($name);
+        return WSContainer::cast($result);
+    }
+    public function getBlockByName($name) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getBlockByName($name);
+        //return WSDevice::cast($result);
+    }
+    public function getBlockByIpAddress($ipAddr) {
+        $this->soapClient->__setLocation("http://{$this->ipAddr}:{$this->port}/inc-ws/services/Gets?wsdl");
+        $result = $this->soapClient->getBlockByIpAddress($ipAddr);
+        //return WSDevice::cast($result);
+    }
+    
+    public function __construct($ipAddr,$port,$user,$password) {
+        $this->ipAddr = $ipAddr;
+        $this->port = $port;
+        try {$this->soapClient = new \SoapClient("http://{$ipAddr}:{$port}/inc-ws/services/Gets?wsdl",array('login' => $user,'password' => $password));}
+        catch (Exception $e) { echo $e->getMessage(); }
+    }
+}
+
+?>
