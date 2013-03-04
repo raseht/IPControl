@@ -1,0 +1,27 @@
+<?php
+namespace DiamondIP;
+
+class WSInterface {
+    private $hwType;
+    private $id;
+    private $macAddress;
+    private $name;
+    private $sequence;
+    private $ipAddress;
+    private $excludeFromDiscovery;
+
+    public static function cast($wsInterface) {
+        return new WSInterface($wsInterface);
+    }
+
+    private function __construct($wsInterface) {
+        $this->hwType = $wsInterface->hwType;
+        $this->id = $wsInterface->id;
+        $this->macAddress = $wsInterface->macAddress;
+        $this->name = $wsInterface->name;
+        $this->sequence = $wsInterface->sequence;
+        $this->ipAddress = $wsInterface->ipAddress;
+        $this->excludeFromDiscovery = $wsInterface->excludeFromDiscovery;
+    }  
+}
+?>
