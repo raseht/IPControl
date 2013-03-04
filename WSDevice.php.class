@@ -1,0 +1,51 @@
+<?php
+namespace DiamondIP;
+
+class WSDevice {
+    public $view;
+    public $hwType;
+    public $addressType;
+    public $ipAddress;
+    public $resourceRecordFlag;
+    public $MACAddress;
+    public $deviceType;
+    public $domainName;
+    public $container;
+    public $description;
+    public $hostname;
+    public $aliases;
+    public $userDefinedFields;
+    public $interfaces;
+    public $excludeFromDiscovery;
+
+    public static function cast($wsDevice) {
+        if(is_array($wsDevice->interfaces)) {
+            for($i=0;$i<count($wsDevice->interfaces);$i++) {
+                $wsDevice->interfaces[$i] = WSInterface::cast($wsDevice->interfaces[$i]);
+            }
+        }
+        else {
+            $wsDevice->interfaces = WSInterface::cast($wsDevice->interfaces);
+        }
+        return new WSDevice($wsDevice);
+    }
+
+    private function __construct($wsDevice) {
+        $this->view = $wsDevice->view;
+        $this->hwType = $wsDevice->hwType;
+        $this->addressType = $wsDevice->addressType;
+        $this->ipAddress = $wsDevice->ipAddress;
+        $this->resourceRecordFlag = $wsDevice->resourceRecordFlag;
+        $this->MACAddress = $wsDevice->MACAddress;
+        $this->deviceType = $wsDevice->deviceType;
+        $this->domainName = $wsDevice->domainName;
+        $this->container = $wsDevice->container;
+        $this->description = $wsDevice->description;
+        $this->hostname = $wsDevice->hostname;
+        $this->aliases = $wsDevice->aliases;
+        $this->userDefinedFields = $wsDevice->userDefinedFields;
+        $this->interfaces = $wsDevice->interfaces;
+        $this->excludeFromDiscovery = $wsDevice->excludeFromDiscovery;
+    }
+}
+?>
