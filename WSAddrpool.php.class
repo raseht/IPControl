@@ -1,0 +1,39 @@
+<?php
+namespace DiamondIP;
+
+class WSAddrpool {
+    private $allowClientClasses;
+    private $container;
+    private $denyClientClasses;
+    private $dhcpOptionSet;
+    private $dhcpPolicySet;
+    private $endAddr;
+    private $failoverNetService;
+    private $id;
+    private $name;
+    private $primaryNetService;
+    private $sharename;
+    private $startAddr;
+    private $type;
+    
+    public static function cast($wsAddrpool) {
+        return new WSAddrpool($wsAddrpool);
+    }
+    
+    private function __construct($wsAddrpool) {
+        $this ->allowClientClasses = $wsAddrpool->allowClientClasses;
+        $this ->container = $wsAddrpool->container;
+        $this ->denyClientClasses = $wsAddrpool->denyClientClasses;
+        $this ->dhcpOptionSet = $wsAddrpool->dhcpOptionSet;
+        $this ->dhcpPolicySet = $wsAddrpool->dhcpPolicySet;
+        $this ->endAddr = $wsAddrpool->endAddr;
+        $this ->failoverNetService = $wsAddrpool->failoverNetService;
+        $this ->id = $wsAddrpool->id;
+        $this ->name = $wsAddrpool->name;
+        $this ->primaryNetService = $wsAddrpool->primaryNetService;
+        $this ->sharename = $wsAddrpool->sharename;
+        $this ->startAddr = $wsAddrpool->startAddr;
+        $this ->type = $wsAddrpool->type;
+    }
+}
+?>
