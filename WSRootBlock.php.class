@@ -1,0 +1,41 @@
+<?php
+namespace DiamondIP;
+
+class WSRootBlock {
+    private $RIR;
+    private $SWIPname;
+    private $allocationReason;
+    private $allocationReasonDescription;
+    private $allowOverlappingSpace;
+    private $blockAddr;
+    private $blockName;
+    private $blockSize;
+    private $blockType;
+    private $container;
+    private $createReverseDomain;
+    private $description;
+    private $domainType;
+    private $userDefinedFields;
+
+    public static function cast($wsRootBlock) {
+        return new WSRootBlock($wsRootBlock);
+    }
+    
+    private function __construct($wsRootBlock) {
+        $this->RIR = $wsRootBlock->RIR;
+        $this->SWIPname = $wsRootBlock->SWIPname;
+        $this->allocationReason = $wsRootBlock->allocationReason;
+        $this->allocationReasonDescription = $wsRootBlock->allocationReasonDescription;
+        $this->allowOverlappingSpace = $wsRootBlock->allowOverlappingSpace;
+        $this->blockAddr = $wsRootBlock->blockAddr;
+        $this->blockName = $wsRootBlock->blockName;
+        $this->blockSize = $wsRootBlock->blockSize;
+        $this->blockType = $wsRootBlock->blockType;
+        $this->container = $wsRootBlock->container;
+        $this->createReverseDomain = $wsRootBlock->createReverseDomain;
+        $this->description = $wsRootBlock->description;
+        $this->domainType = $wsRootBlock->domainType;
+        $this->userDefinedFields = $wsRootBlock->userDefinedFields;
+    }
+}
+?>
