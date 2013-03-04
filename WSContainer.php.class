@@ -1,0 +1,44 @@
+<?php
+namespace DiamondIP;
+
+class WSContainer {
+    private $allowedAllocFromParentBlockTypes;
+    private $allowedBlockTypes;
+    private $allowedDeviceTypes;
+    private $allowedRootBlockTypes;
+    private $blockTypeInfoTemplates;
+    private $containerName;
+    private $description;
+    private $deviceInfoTemplates;
+    private $id;
+    private $ignoreBlocktypeInUse;
+    private $informationTemplate;
+    private $maintainHistoryRec;
+    private $parentName;
+    private $requireSWIPNameBlockTypes;
+    private $userDefinedFields;
+    
+    public static function cast($wsContainer) {
+        return new WSContainer($wsContainer);
+    }
+    
+    private function __construct($wsContainer) {
+        $this->allowedAllocFromParentBlockTypes = $wsContainer->allowedAllocFromParentBlockTypes;
+        $this->allowedBlockTypes = $wsContainer->allowedBlockTypes;
+        $this->allowedDeviceTypes = $wsContainer->allowedDeviceTypes;
+        $this->allowedRootBlockTypes = $wsContainer->allowedRootBlockTypes;
+        $this->blockTypeInfoTemplates = $wsContainer->blockTypeInfoTemplates;
+        $this->containerName = $wsContainer->containerName;
+        $this->description = $wsContainer->description;
+        $this->deviceInfoTemplates = $wsContainer->deviceInfoTemplates;
+        $this->id = $wsContainer->id;
+        $this->ignoreBlocktypeInUse = $wsContainer->ignoreBlocktypeInUse;
+        $this->informationTemplate = $wsContainer->informationTemplate;
+        $this->maintainHistoryRec = $wsContainer->maintainHistoryRec;
+        $this->parentName = $wsContainer->parentName;
+        $this->requireSWIPNameBlockTypes = $wsContainer->requireSWIPNameBlockTypes;
+        $this->userDefinedFields = $wsContainer->userDefinedFields;
+    }
+}
+
+?>
